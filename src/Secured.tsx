@@ -8,6 +8,12 @@ interface SecuredState {
     userInfo?: any
 }
 
+const keycloak = Keycloak({
+    url: 'http://localhost:9000/auth',
+    realm: "jktest",
+    clientId: "jkefrontend"
+});
+
 class Secured extends Component<any, SecuredState> {
     constructor(props: any) {
         super(props);
@@ -20,11 +26,7 @@ class Secured extends Component<any, SecuredState> {
     }
 
     componentDidMount() {
-        const keycloak = Keycloak({
-            url: 'http://localhost:9000/auth',
-            realm: "jktest",
-            clientId: "jkefrontend"
-        });
+
 
         keycloak.init({onLoad: 'login-required'}).then(authenticated => {
             console.log('got auth!')
@@ -43,6 +45,10 @@ class Secured extends Component<any, SecuredState> {
         })
     }
 
+    logout = () => {
+        keycloak.logout()
+    }
+
     render() {
         if (this.state.keycloak) {
             if (this.state.authenticated) return (
@@ -56,6 +62,8 @@ class Secured extends Component<any, SecuredState> {
                             {JSON.stringify(this.state.userInfo)}
                         </div>
                         : null}
+
+                    <button onClick={this.logout}>logout la</button>
                 </div>
             ); else return (<div>Unable to authenticate!</div>)
         }

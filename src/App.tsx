@@ -17,7 +17,6 @@ class AppRoot extends React.Component<any, any> {
                 <Route path="/secured" component={Secured}/>
             </div>
         </BrowserRouter>
-
     }
 }
 
