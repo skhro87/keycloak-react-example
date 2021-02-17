@@ -1,0 +1,1 @@
+docker run -p 9000:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=test7733 jboss/keycloak
