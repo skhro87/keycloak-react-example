@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 import {BrowserRouter, Link, Route} from "react-router-dom";
 import Welcome from "./Welcome";
